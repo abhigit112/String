@@ -1,21 +1,58 @@
 #include<iostream>
+#include<algorithm>
 #include<string>
 using namespace std;
-string capitalize(string x)
+char tolower(char x)
 {
-    for (int i = 0; i <x.length(); i++)
+    if (x>='a' && x<='z')
     {
-        if (i==0 || x[i-1]==' ')
-        {
-           x[i]=toupper(x[i]);
-        }
-        
+        return x;
     }
-    return x;
+    else
+    {
+        char temp=x-'A'+'a';
+        return temp;
+    }
+    
 }
+bool check(string x)
+{
+    int start=0;
+    int end=x.size()-1;
+    while (start<=end)
+    {
+       if (tolower(x[start])==tolower(x[end]))
+       {
+        start++;
+        end--;
+       }
+       else
+       {
+        return 0;
+       }
+    }
+    return 1;
+}
+void checkpalindrome(string x)
+{
+    int k=check(x);
+    if (k==1)
+    {
+        cout<<"Palindrome";
+    }
+    else
+    {
+        cout<<"Not Palindrome";
+    }
+    
+}
+
 int main()
 {
-    string a;
-    getline(cin,a);
-    cout<<capitalize(a);
+    string s;
+    getline(cin,s);
+    checkpalindrome(s);
+    
+   
+   return 0;
 }
